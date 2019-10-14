@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["nicholas.schwaderer@gmail.com"]
 
   spec.summary       = %q{Track your memory and time performance in console, csv and/or logs.}
-  spec.homepage      = "https://schwad.github.io"
+  spec.homepage      = "https://github.com/Schwad/schwad_performance_logger"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
