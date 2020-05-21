@@ -2,14 +2,20 @@ PATH
   remote: .
   specs:
     schwad_performance_logger (0.2.0)
+      benchmark-ips
       get_process_mem
+      memory_profiler
 
 GEM
   remote: https://rubygems.org/
   specs:
+    benchmark-ips (2.7.2)
     diff-lcs (1.3)
-    get_process_mem (0.2.3)
-    rake (10.5.0)
+    ffi (1.12.2)
+    get_process_mem (0.2.5)
+      ffi (~> 1.0)
+    memory_profiler (0.9.14)
+    rake (13.0.1)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -29,7 +35,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
-  rake (~> 10.0)
+  rake (~> 13.0)
   rspec (~> 3.0)
   schwad_performance_logger!
 
