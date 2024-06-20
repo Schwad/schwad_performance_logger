@@ -26,17 +26,17 @@ class PLogger
     log_performance('initialization')
   end
 
-  def log_performance(memo = nil)
+  def log_performance(memo = nil, minimal: false)
     if block_given?
       update_checks
       yield
       update_checks
-      puts_performance("After: #{memo}", gblock: true) unless @options[:puts] == false
+      puts_performance("After: #{memo}", gblock: true, minimal: minimal) unless @options[:puts] == false
       logger_performance("After: #{memo}") unless @options[:log] == false
       csv_performance("After: #{memo}") unless @options[:csv] == false
     else
       update_checks
-      puts_performance(memo) unless @options[:puts] == false
+      puts_performance(memo, minimal: minimal) unless @options[:puts] == false
       logger_performance(memo) unless @options[:log] == false
       csv_performance(memo) unless @options[:csv] == false
     end
@@ -47,11 +47,13 @@ class PLogger
 
   private
 
-  def puts_performance(memo, gblock: false)
+  def puts_performance(memo, gblock: false, minimal: false)
     separator = '*' * 80
     puts "\e[34m#{separator}\e[0m"
     puts "\e[32m#{memo}\e[0m"
-    if gblock
+    if minimal
+      puts format_output_minimal
+    elsif gblock
       puts format_output_block
     else
       puts format_output
@@ -104,6 +106,12 @@ class PLogger
       \e[33mDifference since last log:\e[0m #{@second_delta_memory} Mb
       \e[33mTime passed:\e[0m             #{@delta_time * 1000} milliseconds
       \e[33mTime since last run:\e[0m     #{@second_delta_time * 1000} milliseconds
+    OUTPUT
+  end
+
+  def format_output_minimal
+    <<~OUTPUT
+      #{@second_delta_time * 1000}ms
     OUTPUT
   end
 end
