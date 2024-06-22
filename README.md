@@ -26,9 +26,14 @@ Or install it yourself as:
 `pl = SPL.new({full_memo: 'Check extract method refactoring'})`
 
 ```
-**********************************************************************
-Starting initialization. Current memory: 12(Mb), difference of 0 (mb) since beginning and difference of 0 since last log. time passed: 0.004678 seconds, time since last run: 0.004678
-**********************************************************************
+********************************************************************************
+initialization
+Current memory:          42 Mb
+Difference since start:  0 Mb
+Difference since last log: 0 Mb
+Time passed:             0.018000000000000002 milliseconds
+Time since last run:     0.018000000000000002 milliseconds
+********************************************************************************
 ```
 
 Each subsequent log:
@@ -36,9 +41,14 @@ Each subsequent log:
 `pl.log_performance("Test memo")`
 
 ```
-*********************************************************************
-Starting Test memo. Current memory: 12(Mb), difference of 0 (mb) since beginning and difference of 0 since last log. time passed: 22.493993 seconds, time since last run: 9.616874
-*********************************************************************
+********************************************************************************
+Test memo
+Current memory:          42 Mb
+Difference since start:  0 Mb
+Difference since last log: 0 Mb
+Time passed:             0.283 milliseconds
+Time since last run:     0.265 milliseconds
+********************************************************************************
 ```
 
 ### Options
@@ -54,6 +64,8 @@ you can actually see the log as it goes by. This does not affect the 'time' meas
 
 `SPL.new({pause: 8})`
 
+You can also use `#log_performance` under alias `#lp`
+
 ## Usage example:
 
 ```
@@ -67,6 +79,18 @@ pl.log_performance('check status after writing to database')
 # code
 
 pl.log_performance('inspect final performance after executing service')
+```
+
+## Block syntax
+
+You may also pass a block to `#log_performance`
+
+```ruby
+pl.log_performance("check this chonk of code") do
+ary = []
+12345.times do |i|
+  ary << i
+end
 ```
 
 ## Further Profiling Tools
